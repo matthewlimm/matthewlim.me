@@ -3,7 +3,7 @@ async function updateCounter() {
     let response = await fetch('https://fa3ikps5tkrdenqxnnrx5huqtq0jbkfy.lambda-url.us-west-1.on.aws/') // AWS lambda function
     let data = await response.json(); // storing response in data
     view = ordinal_suffix_of(data)
-    counter.innerHTML = `You are the ${view} viewer of my website!`;
+    counter.innerHTML = `<i class="fa-solid fa-eye"></i>&nbsp;You are the ${view} viewer of my website!`;
 }
 
 function ordinal_suffix_of(i) {
