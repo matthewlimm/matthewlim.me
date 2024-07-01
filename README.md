@@ -1,4 +1,4 @@
-  # matthewlim.me — AWS Cloud Resume Challenge
+# matthewlim.me — AWS Cloud Resume Challenge
 
 ![Upload Website](https://github.com/matthewlimm/matthewlim.me/actions/workflows/front-end-cicd.yml/badge.svg)
 
