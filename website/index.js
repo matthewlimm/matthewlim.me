@@ -11,6 +11,7 @@ async function updateCounter() {
         let response = await fetch('https://fa3ikps5tkrdenqxnnrx5huqtq0jbkfy.lambda-url.us-west-1.on.aws/', {
             method: 'POST'
         });
+        console.log(response)
         let result = await response.json(); // Parse the JSON response
         data = result.views; // Extract the views count
 
