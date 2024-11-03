@@ -4,22 +4,22 @@ async function updateCounter() {
     let data;
 
     // Check if the view has already been counted in this session
-    if (!localStorage.getItem('viewCounted')) {
-        console.log("Session not counted yet. Incrementing counter...");
+    if (!sessionStorage.getItem('viewCounted')) {
+        console.log("New session detected. Sending POST request to increment counter...");
 
         // If not counted, send a POST request to increment the counter
-        let response = await fetch('https://fa3ikps5tkrdenqxnnrx5huqtq0jbkfy.lambda-url.us-west-1.on.aws/', {
+        let response = await fetch(`https://fa3ikps5tkrdenqxnnrx5huqtq0jbkfy.lambda-url.us-west-1.on.aws/?t=${new Date().getTime()}`, {
             method: 'POST'
         });
+        
         let result = await response.json(); // Parse the JSON response
-        console.log(result)
         data = result.views; // Extract the views count
 
         // Mark session as counted
-        localStorage.setItem('viewCounted', 'true');
-        console.log("Session marked as counted.");
+        sessionStorage.setItem('viewCounted', 'true');
+        console.log("Session marked as counted, view count updated to:", data);
     } else {
-        console.log("Session already counted. Fetching current count...");
+        console.log("Session already counted. Sending GET request to retrieve current count...");
 
         // If already counted, send a GET request to retrieve the current count
         let response = await fetch('https://fa3ikps5tkrdenqxnnrx5huqtq0jbkfy.lambda-url.us-west-1.on.aws/');
