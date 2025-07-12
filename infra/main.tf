@@ -52,7 +52,7 @@ resource "aws_iam_policy" "iam_policy_for_resume_project" {
 			      "dynamoDB:GetItem",
             "dynamoDB:PutItem"
           ],
-          "Resource" : "arn:aws:dynamodb:*:*:table/matthewlim.me"
+            "Resource" : "arn:aws:dynamodb:*:*:table/matthewjlim.com"
         },
       ]
   })
