@@ -32,6 +32,16 @@
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
       }
+      
+      /* Light mode texture background */
+      body:not(.dark) {
+        background-image: 
+          radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 75% 25%, rgba(251, 146, 60, 0.03) 0%, transparent 50%);
+        background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+      }
     </style>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
@@ -42,9 +52,9 @@
   
   <body class="font-roboto bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
     <!-- Dark mode toggle -->
-    <button id="theme-toggle" class="fixed top-6 right-6 z-50 p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-lg">
-      <i class="fas fa-moon dark:hidden text-gray-600"></i>
-      <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 shadow-lg">
+      <i class="fas fa-moon text-lg dark:hidden text-gray-600"></i>
+      <i class="fas fa-sun text-lg hidden dark:block text-yellow-400"></i>
     </button>
 
     <!-- Background particles -->
@@ -62,11 +72,11 @@
             Matthew Lim
           </h1>
           <p class="text-xl text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed">
-            Data Science & Business Analytics Student at UC Berkeley
+            Software Development Engineer @ Amazon <br/> Data Science Alum @ UC Berkeley
           </p>
           <div class="flex items-center justify-center text-gray-500 dark:text-gray-400 mb-8">
             <i class="fas fa-envelope mr-2"></i>
-            <span>matthewlim [at] berkeley.edu</span>
+            <span>matthewlim@berkeley.edu</span>
           </div>
         </div>
 
@@ -98,6 +108,96 @@
             Since then, I've continued to deepen my skills through UC Berkeley's curriculum, personal projects, and 
             hands-on experience in internships and contract roles. I'm always eager to connect—feel free to reach out!
           </p>
+        </div>
+      </section>
+
+      <!-- Experience section -->
+      <section class="mb-16 animate-slide-up">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
+          <span class="w-12 h-1 bg-purple-500 mr-4 rounded-full"></span>
+          Experience
+        </h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <!-- Amazon -->
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-orange-200/50 dark:border-orange-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
+              <img src="https://i.pinimg.com/originals/01/ca/da/01cada77a0a7d326d85b7969fe26a728.jpg" alt="Amazon Logo" class="w-20 h-12 object-cover object-center">
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-1">Amazon</h3>
+            <p class="text-xs text-orange-600 dark:text-orange-400 font-medium">Current</p>
+            
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20 shadow-2xl">
+              <div class="font-semibold">Software Development Engineer</div>
+              <div class="text-gray-300 dark:text-gray-600 text-xs">AGI Data Services</div>
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+            </div>
+          </div>
+
+          <!-- Mattel -->
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-pink-200/50 dark:border-pink-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
+              <img src="https://logo.clearbit.com/mattel.com" alt="Mattel Logo" class="w-12 h-12 object-contain">
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-1">Mattel</h3>
+            <p class="text-xs text-pink-600 dark:text-pink-400 font-medium">Sep '24 - Jan '25</p>
+            
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20 shadow-2xl">
+              <div class="font-semibold">Data Engineer Contractor</div>
+              <div class="text-gray-300 dark:text-gray-600 text-xs">ESG Data Pipelines and Dashboards</div>
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+            </div>
+          </div>
+
+          <!-- PwC -->
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-red-200/50 dark:border-red-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
+              <img src="https://logo.clearbit.com/pwc.com" alt="PwC Logo" class="w-15 h-15 object-cover object-center">
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-1">PwC</h3>
+            <p class="text-xs text-red-600 dark:text-red-400 font-medium">Jun - Aug '24</p>
+            
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20 shadow-2xl">
+              <div class="font-semibold">Software Engineer Intern</div>
+              <div class="text-gray-300 dark:text-gray-600 text-xs">Generative AI Chatbot</div>
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+            </div>
+          </div>
+
+          <!-- Conagra Brands -->
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-green-200/50 dark:border-green-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
+              <img src="https://logo.clearbit.com/conagrabrands.com" alt="Conagra Logo" class="w-14 h-14 object-cover object-center">
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-1">Conagra</h3>
+            <p class="text-xs text-green-600 dark:text-green-400 font-medium">Feb - May '24</p>
+            
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20 shadow-2xl">
+              <div class="font-semibold">Data Science Intern</div>
+              <div class="text-gray-300 dark:text-gray-600 text-xs">RAG Database Chatbot</div>
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+            </div>
+          </div>
+
+          <!-- CareerVillage -->
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200/50 dark:border-blue-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
+              <img src="https://logo.clearbit.com/careervillage.org" alt="CareerVillage Logo" class="w-12 h-12 object-contain">
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-1">CareerVillage</h3>
+            <p class="text-xs text-blue-600 dark:text-blue-400 font-medium">Jun - Jul '23</p>
+            
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20 shadow-2xl">
+              <div class="font-semibold">Consulting Intern</div>
+              <div class="text-gray-300 dark:text-gray-600 text-xs">PwC Pro bono Case - Top 7% (6/77) Finalists</div>
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -202,7 +302,7 @@
       <!-- Footer -->
       <footer class="mt-20 pt-8 border-t border-gray-200 dark:border-gray-700">
         <div class="text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>Hosted on AWS | Built with ❤️ and TailwindCSS</p>
+          <p>Hosted on AWS | Built with ☕</p>
         </div>
       </footer>
     </div>
