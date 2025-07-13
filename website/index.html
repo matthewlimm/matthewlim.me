@@ -32,6 +32,61 @@
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
       }
+      @keyframes blurIn {
+        from { 
+          opacity: 0; 
+          filter: blur(10px);
+          transform: translateY(20px);
+        }
+        to { 
+          opacity: 1; 
+          filter: blur(0px);
+          transform: translateY(0);
+        }
+      }
+      @keyframes blurInSlow {
+        from { 
+          opacity: 0; 
+          filter: blur(15px);
+          transform: translateY(30px);
+        }
+        to { 
+          opacity: 1; 
+          filter: blur(0px);
+          transform: translateY(0);
+        }
+      }
+      
+      .blur-in {
+        animation: blurIn 0.4s ease-out forwards;
+      }
+      .blur-in-slow {
+        animation: blurInSlow 0.5s ease-out forwards;
+      }
+      .blur-in-delay-1 {
+        animation: blurIn 0.4s ease-out 0.15s forwards;
+        opacity: 0;
+      }
+      .blur-in-delay-2 {
+        animation: blurIn 0.4s ease-out 0.3s forwards;
+        opacity: 0;
+      }
+      .blur-in-delay-3 {
+        animation: blurIn 0.4s ease-out 0.45s forwards;
+        opacity: 0;
+      }
+      .blur-in-delay-4 {
+        animation: blurIn 0.4s ease-out 0.6s forwards;
+        opacity: 0;
+      }
+      .blur-in-delay-5 {
+        animation: blurIn 0.4s ease-out 0.75s forwards;
+        opacity: 0;
+      }
+      .blur-in-delay-6 {
+        animation: blurIn 0.4s ease-out 0.9s forwards;
+        opacity: 0;
+      }
       
       /* Light mode texture background */
       body:not(.dark) {
@@ -42,6 +97,7 @@
           radial-gradient(circle at 75% 25%, rgba(251, 146, 60, 0.03) 0%, transparent 50%);
         background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
       }
+      
     </style>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
@@ -68,20 +124,31 @@
         <div class="mb-8">
           <img src="./assets/img/headshot-modified.png" alt="Matthew Lim" 
                class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white dark:border-gray-700 shadow-xl object-cover">
-          <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Matthew Lim
+          <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 blur-in-slow lowercase">
+            matthew lim
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed">
-            Software Development Engineer @ Amazon <br/> Data Science Alum @ UC Berkeley
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed blur-in-delay-1 flex flex-col items-center">
+            <span>software development engineer @ amazon</span>
+            <span class="flex items-center">
+              data science alum @ uc berkeley 
+              <span class="group relative inline-block ml-2">
+                <img src="https://sportslogohistory.com/wp-content/uploads/2022/10/california_golden_bears_1952-pres_a.png" 
+                     alt="UC Berkeley Logo" title="go bears! 🐻" class="w-6 h-6 cursor-pointer hover:scale-110 hover:rotate-12 hover:drop-shadow-lg transition-all duration-300">
+                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 whitespace-nowrap pointer-events-none" style="z-index: 9999;">
+                  go bears! 🐻
+                  <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                </div>
+              </span>
+            </span>
           </p>
-          <div class="flex items-center justify-center text-gray-500 dark:text-gray-400 mb-8">
+          <div class="flex items-center justify-center text-gray-500 dark:text-gray-400 mb-8 blur-in-delay-2">
             <i class="fas fa-envelope mr-2"></i>
-            <span>matthewlim@berkeley.edu</span>
+            <a href="mailto:matthewlim@berkeley.edu" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">matthewlim@berkeley.edu</a>
           </div>
         </div>
 
         <!-- Social links -->
-        <div class="flex justify-center space-x-6">
+        <div class="flex justify-center space-x-6 blur-in-delay-3">
           <a href="https://github.com/matthewlimm" target="_blank"
              class="group flex items-center space-x-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-sm hover:shadow-md">
             <i class="fab fa-github text-lg group-hover:scale-110 transition-transform"></i>
@@ -96,26 +163,24 @@
       </header>
 
       <!-- About section -->
-      <section class="mb-16 animate-slide-up">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+      <section class="mb-16 blur-in-delay-4">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center lowercase">
           <span class="w-12 h-1 bg-blue-500 mr-4 rounded-full"></span>
-          About Me
+          about
         </h2>
-        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
-          <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            Hello! I'm Matthew, a Data Science and Business/Industrial Analytics student at UC Berkeley. 
-            My passion for software applications began early, attending hackathons, conferences, and experimenting with projects. 
-            Since then, I've continued to deepen my skills through UC Berkeley's curriculum, personal projects, and 
-            hands-on experience in internships and contract roles. I'm always eager to connect—feel free to reach out!
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300">
+          <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+            passionate about building things & solving problems with data. love talking about machine learning, 
+            cloud infrastructure, and full-stack development. currently @ amazon agi data services.
           </p>
         </div>
       </section>
 
       <!-- Experience section -->
-      <section class="mb-16 animate-slide-up">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
+      <section class="mb-16 blur-in-delay-5">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center lowercase">
           <span class="w-12 h-1 bg-purple-500 mr-4 rounded-full"></span>
-          Experience
+          experience
         </h2>
         
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -202,10 +267,10 @@
       </section>
 
       <!-- Projects section -->
-      <section class="animate-slide-up">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
+      <section class="blur-in-delay-6">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center lowercase">
           <span class="w-12 h-1 bg-green-500 mr-4 rounded-full"></span>
-          Featured Projects
+          projects
         </h2>
         
         <div class="space-y-8">
