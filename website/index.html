@@ -133,7 +133,7 @@
               data science alum @ uc berkeley 
               <span class="group relative inline-block ml-2">
                 <img src="https://sportslogohistory.com/wp-content/uploads/2022/10/california_golden_bears_1952-pres_a.png" 
-                     alt="UC Berkeley Logo" title="go bears! 🐻" class="w-6 h-6 cursor-pointer hover:scale-110 hover:rotate-12 hover:drop-shadow-lg transition-all duration-300">
+                     alt="UC Berkeley Logo" class="w-6 h-6 cursor-pointer hover:scale-110 hover:rotate-12 hover:drop-shadow-lg transition-all duration-300">
                 <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 whitespace-nowrap pointer-events-none" style="z-index: 9999;">
                   go bears! 🐻
                   <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
@@ -391,6 +391,100 @@
         localStorage.setItem('theme', isDark ? 'light' : 'dark');
       });
 
+      // UC Berkeley logo rain effect
+      function createBearRain() {
+        // Create "GO BEARS!" overlay with gold exclamation
+        const overlay = document.createElement('div');
+        overlay.innerHTML = 'GO BEARS<span style="color: #FDB515;">!</span> 🐻';
+        overlay.style.cssText = `
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          font-size: 4rem;
+          font-weight: bold;
+          color: #003262;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+          z-index: 10000;
+          pointer-events: none;
+          animation: titleEnter 0.6s ease-out forwards, pulse 2s ease-in-out infinite 0.6s;
+        `;
+        document.body.appendChild(overlay);
+
+        // Add animations
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes titleEnter {
+            0% { 
+              transform: translate(-50%, -50%) scale(0) rotate(-10deg); 
+              opacity: 0; 
+            }
+            60% { 
+              transform: translate(-50%, -50%) scale(1.1) rotate(2deg); 
+              opacity: 1; 
+            }
+            100% { 
+              transform: translate(-50%, -50%) scale(1) rotate(0deg); 
+              opacity: 1; 
+            }
+          }
+          @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+          }
+          @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(calc(100vh + 100px)) rotate(720deg); opacity: 0.3; }
+          }
+          @keyframes fadeOut {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+          }
+        `;
+        document.head.appendChild(style);
+
+        // Create falling logos
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => {
+            const fallingLogo = document.createElement('img');
+            fallingLogo.src = 'https://sportslogohistory.com/wp-content/uploads/2022/10/california_golden_bears_1952-pres_a.png';
+            fallingLogo.style.cssText = `
+              position: fixed;
+              width: 40px;
+              height: 40px;
+              left: ${Math.random() * (window.innerWidth - 40)}px;
+              top: -100px;
+              z-index: 9999;
+              pointer-events: none;
+              animation: fall ${1 + Math.random() * 1.5}s linear forwards;
+            `;
+            document.body.appendChild(fallingLogo);
+
+            // Remove logo after animation
+            setTimeout(() => {
+              if (fallingLogo.parentNode) {
+                fallingLogo.parentNode.removeChild(fallingLogo);
+              }
+            }, 3000);
+          }, i * 50);
+        }
+
+        // Fade out overlay after 2.5 seconds
+        setTimeout(() => {
+          overlay.style.animation = 'fadeOut 0.5s ease-out forwards';
+        }, 2500);
+
+        // Remove overlay after fade
+        setTimeout(() => {
+          if (overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay);
+          }
+          if (style.parentNode) {
+            style.parentNode.removeChild(style);
+          }
+        }, 3000);
+      }
+
       // Smooth scroll for better UX
       document.addEventListener('DOMContentLoaded', function() {
         // Add stagger animation to project cards
@@ -399,6 +493,12 @@
           project.style.animationDelay = `${index * 0.2}s`;
           project.classList.add('animate-slide-up');
         });
+
+        // Add click event to UC Berkeley logo
+        const berkeleyLogo = document.querySelector('img[alt="UC Berkeley Logo"]');
+        if (berkeleyLogo) {
+          berkeleyLogo.addEventListener('click', createBearRain);
+        }
       });
     </script>
     <script src="./index.js"></script>
