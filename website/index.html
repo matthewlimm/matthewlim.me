@@ -45,6 +45,87 @@
           transform: translateY(0);
         }
       }
+      /* Subtle dotted notebook background pattern - only for light mode */
+      body.dotted-bg:not(.dark) {
+        background-image: 
+          radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 75% 25%, rgba(251, 146, 60, 0.03) 0%, transparent 50%);
+        background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+        background-position: 0 0, 0 0, 0 0, 0 0;
+        position: relative;
+      }
+      
+      /* Dots layer that fades at footer */
+      body.dotted-bg:not(.dark)::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle, rgba(107, 114, 128, 0.35) 0.8px, transparent 0.8px);
+        background-size: 22px 22px;
+        background-position: 0 0;
+        pointer-events: none;
+        z-index: -1;
+        mask: linear-gradient(to bottom, white 0%, white calc(100% - 200px), transparent 100%);
+        -webkit-mask: linear-gradient(to bottom, white 0%, white calc(100% - 200px), transparent 100%);
+      }
+      
+      /* Enhanced hover effects and micro-interactions */
+      .skill-dot {
+        transition: all 0.3s ease;
+      }
+      
+      .skill-dot:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+      }
+      
+      .metric-card {
+        transition: all 0.3s ease;
+      }
+      
+      .metric-card:hover {
+        transform: translateY(-2px);
+      }
+      
+      .specialization-tag {
+        transition: all 0.3s ease;
+      }
+      
+      .specialization-tag:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.95) !important;
+      }
+      
+      .dark .specialization-tag:hover {
+        background: rgba(31, 41, 55, 0.95) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* Smooth scroll behavior */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Enhanced card animations */
+      .card-hover {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .dark .card-hover:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
       @keyframes blurInSlow {
         from { 
           opacity: 0; 
@@ -89,15 +170,7 @@
         opacity: 0;
       }
       
-      /* Light mode texture background */
-      body:not(.dark) {
-        background-image: 
-          radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 75% 25%, rgba(251, 146, 60, 0.03) 0%, transparent 50%);
-        background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-      }
+      /* This is now handled by the dotted-bg class above */
       
     </style>
     
@@ -107,7 +180,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   </head>
   
-  <body class="font-roboto bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+  <body class="font-roboto bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300 dotted-bg min-h-screen">
     <!-- Dark mode toggle -->
     <button id="theme-toggle" class="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 shadow-lg">
       <i class="fas fa-moon text-lg dark:hidden text-gray-600"></i>
@@ -118,27 +191,24 @@
     <div id="particles-js" class="fixed inset-0 -z-10"></div>
 
     <!-- Main container -->
-    <div class="min-h-screen max-w-4xl mx-auto px-6 py-12 lg:px-8">
+    <div class="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:px-8">
       
       <!-- Header section -->
       <header class="text-center mb-16 animate-fade-in">
         <div class="mb-8">
-          <img src="./assets/img/headshot-modified.png" alt="Matthew Lim" 
-               class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white dark:border-gray-700 shadow-xl object-cover">
+          <img src="./assets/img/headshot-modified-2.jpeg" alt="Matthew Lim" 
+               class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white dark:border-gray-700 shadow-xl object-contain bg-black" 
+               style="object-position: 57% 5px;">
           <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 blur-in-slow lowercase">
             matthew lim
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed blur-in-delay-1 flex flex-col items-center">
-            <span>software development engineer @ amazon</span>
-            <span class="flex items-center">
+          <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed blur-in-delay-1 flex flex-col items-center px-4">
+            <span class="whitespace-nowrap text-center">software development engineer @ amazon</span>
+            <span class="flex items-center whitespace-nowrap">
               data science alum @ uc berkeley 
-              <span class="group relative inline-block ml-2">
+              <span class="inline-block ml-2">
                 <img src="https://sportslogohistory.com/wp-content/uploads/2022/10/california_golden_bears_1952-pres_a.png" 
-                     alt="UC Berkeley Logo" class="w-6 h-6 cursor-pointer hover:scale-110 hover:rotate-12 hover:drop-shadow-lg transition-all duration-300">
-                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 whitespace-nowrap pointer-events-none" style="z-index: 9999;">
-                  go bears! 🐻
-                  <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
-                </div>
+                     alt="UC Berkeley Logo" class="w-6 h-6 hover:scale-110 hover:rotate-12 hover:drop-shadow-lg transition-all duration-300">
               </span>
             </span>
           </p>
@@ -165,15 +235,48 @@
 
       <!-- About section -->
       <section class="mb-16 blur-in-delay-4">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center lowercase">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center lowercase">
           <span class="w-12 h-1 bg-blue-500 mr-4 rounded-full"></span>
           about
         </h2>
         <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300">
-          <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-            passionate about building things & solving problems with data. love talking about machine learning, 
-            cloud infrastructure, and full-stack development. currently @ amazon agi data services.
-          </p>
+          <div class="space-y-6">
+            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              Software engineer with expertise in <span class="font-semibold text-blue-600 dark:text-blue-400">machine learning</span>, 
+              <span class="font-semibold text-purple-600 dark:text-purple-400">cloud infrastructure</span>, and 
+              <span class="font-semibold text-green-600 dark:text-green-400">full-stack development</span>. 
+              Currently architecting scalable data solutions at Amazon's AGI Data Services, 
+              where I build systems that process millions of data points daily.
+            </p>
+            <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+              I thrive on transforming complex problems into elegant solutions, whether it's building 
+              user-focused applications, implementing ML pipelines, or architecting cloud infrastructure. 
+              My approach combines technical rigor with creative problem-solving to deliver impactful results that truly benefit users.
+            </p>
+            
+            <!-- Specializations -->
+            <div class="mt-8 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-indigo-200/50 dark:border-indigo-700/50">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                <i class="fas fa-brain text-purple-500 mr-3"></i>
+                Specializations
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <!-- AI/ML & Data -->
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Artificial Intelligence / Machine Learning</span>
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Data Science / Data Engineering</span>
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Statistics / Analytics</span>
+                
+                <!-- Systems & Infrastructure -->
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Infrastructure / Systems Programming</span>
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Databases</span>
+                
+                <!-- Development & Tools -->
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Internal Development / Internal Tools</span>
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Tools / API / Compilers</span>
+                <span class="specialization-tag px-4 py-2 bg-white/80 dark:bg-gray-800/80 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200/50 dark:border-gray-700/50">Web Applications</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -186,7 +289,7 @@
         
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           <!-- Amazon -->
-          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-orange-200/50 dark:border-orange-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-orange-200/50 dark:border-orange-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300">
             <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
               <img src="https://i.pinimg.com/originals/01/ca/da/01cada77a0a7d326d85b7969fe26a728.jpg" alt="Amazon Logo" class="w-20 h-12 object-cover object-center">
             </div>
@@ -202,7 +305,7 @@
           </div>
 
           <!-- Mattel -->
-          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-pink-200/50 dark:border-pink-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-pink-200/50 dark:border-pink-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300">
             <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
               <img src="https://logo.clearbit.com/mattel.com" alt="Mattel Logo" class="w-12 h-12 object-contain">
             </div>
@@ -218,7 +321,7 @@
           </div>
 
           <!-- PwC -->
-          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-red-200/50 dark:border-red-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-red-200/50 dark:border-red-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300">
             <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
               <img src="https://logo.clearbit.com/pwc.com" alt="PwC Logo" class="w-15 h-15 object-cover object-center">
             </div>
@@ -234,7 +337,7 @@
           </div>
 
           <!-- Conagra Brands -->
-          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-green-200/50 dark:border-green-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-green-200/50 dark:border-green-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300">
             <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
               <img src="https://logo.clearbit.com/conagrabrands.com" alt="Conagra Logo" class="w-14 h-14 object-cover object-center">
             </div>
@@ -250,7 +353,7 @@
           </div>
 
           <!-- CareerVillage -->
-          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200/50 dark:border-blue-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div class="group relative flex flex-col items-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200/50 dark:border-blue-700/50 hover:shadow-xl hover:scale-105 transition-all duration-300">
             <div class="w-16 h-16 mb-4 flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
               <img src="https://logo.clearbit.com/careervillage.org" alt="CareerVillage Logo" class="w-12 h-12 object-contain">
             </div>
@@ -381,14 +484,17 @@
       // Dark mode toggle
       const themeToggle = document.getElementById('theme-toggle');
       const html = document.documentElement;
+      const body = document.body;
       
       // Check for saved theme or default to light mode
       const currentTheme = localStorage.getItem('theme') || 'light';
       html.classList.toggle('dark', currentTheme === 'dark');
+      body.classList.toggle('dark', currentTheme === 'dark');
       
       themeToggle.addEventListener('click', () => {
         const isDark = html.classList.contains('dark');
         html.classList.toggle('dark', !isDark);
+        body.classList.toggle('dark', !isDark);
         localStorage.setItem('theme', isDark ? 'light' : 'dark');
       });
 
@@ -396,18 +502,18 @@
       function createBearRain() {
         // Create "GO BEARS!" overlay with gold exclamation
         const overlay = document.createElement('div');
-        overlay.innerHTML = 'GO BEARS<span style="color: #FDB515;">!</span> 🐻';
+        overlay.innerHTML = '<span style="color: #003262;">GO BEARS</span><span style="color: #FDB515;">!</span> 🐻';
         overlay.style.cssText = `
           position: fixed;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%) scale(0);
-          font-size: 4rem;
+          font-size: clamp(2rem, 8vw, 4rem);
           font-weight: bold;
-          color: #003262;
-          text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
           z-index: 10000;
           pointer-events: none;
+          white-space: nowrap;
           animation: titleEnter 0.6s ease-out forwards, pulse 2s ease-in-out infinite 0.6s;
         `;
         document.body.appendChild(overlay);
