@@ -208,7 +208,8 @@
               data science alum @ uc berkeley 
               <span class="inline-block ml-2">
                 <img src="https://sportslogohistory.com/wp-content/uploads/2022/10/california_golden_bears_1952-pres_a.png" 
-                     alt="UC Berkeley Logo" class="w-6 h-6 hover:scale-110 hover:rotate-12 hover:drop-shadow-lg transition-all duration-300">
+                     alt="UC Berkeley Logo" class="w-6 h-6 cursor-pointer hover:scale-110 hover:rotate-12 hover:drop-shadow-lg transition-all duration-300" 
+                     onclick="createBearRain()">
               </span>
             </span>
           </p>
@@ -245,8 +246,8 @@
               Software engineer with expertise in <span class="font-semibold text-blue-600 dark:text-blue-400">machine learning</span>, 
               <span class="font-semibold text-purple-600 dark:text-purple-400">cloud infrastructure</span>, and 
               <span class="font-semibold text-green-600 dark:text-green-400">full-stack development</span>. 
-              Currently architecting scalable data solutions at Amazon's AGI Data Services, 
-              where I build systems that process millions of data points daily.
+              Currently helping architect scalable solutions at Amazon's AGI Data Services, 
+              where I help build systems that process millions of data points daily.
             </p>
             <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
               I thrive on transforming complex problems into elegant solutions, whether it's building 
@@ -502,7 +503,7 @@
       function createBearRain() {
         // Create "GO BEARS!" overlay with gold exclamation
         const overlay = document.createElement('div');
-        overlay.innerHTML = '<span style="color: #003262;">GO BEARS</span><span style="color: #FDB515;">!</span> 🐻';
+        overlay.innerHTML = '<span style="color: #1E40AF; text-shadow: 0 0 10px rgba(30, 64, 175, 0.5), 2px 2px 4px rgba(0,0,0,0.8);">GO </span><span style="color: #FDB515; text-shadow: 0 0 10px rgba(253, 181, 21, 0.5), 2px 2px 4px rgba(0,0,0,0.8);">BEARS</span><span style="color: #1E40AF; text-shadow: 0 0 10px rgba(30, 64, 175, 0.5), 2px 2px 4px rgba(0,0,0,0.8);">!</span> 🐻';
         overlay.style.cssText = `
           position: fixed;
           top: 50%;
@@ -510,7 +511,7 @@
           transform: translate(-50%, -50%) scale(0);
           font-size: clamp(2rem, 8vw, 4rem);
           font-weight: bold;
-          text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+          filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4));
           z-index: 10000;
           pointer-events: none;
           white-space: nowrap;
@@ -541,7 +542,8 @@
           }
           @keyframes fall {
             0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(calc(100vh + 100px)) rotate(720deg); opacity: 0.3; }
+            95% { transform: translateY(calc(100vh + 50px)) rotate(720deg); opacity: 0.9; }
+            100% { transform: translateY(calc(100vh + 200px)) rotate(720deg); opacity: 0; }
           }
           @keyframes fadeOut {
             0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -563,7 +565,7 @@
               top: -100px;
               z-index: 9999;
               pointer-events: none;
-              animation: fall ${1 + Math.random() * 1.5}s linear forwards;
+              animation: fall ${1.2 + Math.random() * 0.6}s linear forwards;
             `;
             document.body.appendChild(fallingLogo);
 
@@ -572,7 +574,7 @@
               if (fallingLogo.parentNode) {
                 fallingLogo.parentNode.removeChild(fallingLogo);
               }
-            }, 3000);
+            }, 2500);
           }, i * 50);
         }
 
