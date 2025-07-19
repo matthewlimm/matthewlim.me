@@ -494,9 +494,26 @@
       
       themeToggle.addEventListener('click', () => {
         const isDark = html.classList.contains('dark');
-        html.classList.toggle('dark', !isDark);
-        body.classList.toggle('dark', !isDark);
-        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        
+        if (isDark) {
+          // Switch to light mode
+          html.classList.remove('dark');
+          body.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          // Switch to dark mode
+          html.classList.add('dark');
+          body.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+        
+        // Force smooth repaint for mobile browsers
+        requestAnimationFrame(() => {
+          body.style.transform = 'scale(1.00001)';
+          requestAnimationFrame(() => {
+            body.style.transform = '';
+          });
+        });
       });
 
       // UC Berkeley logo rain effect
